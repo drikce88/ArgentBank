@@ -2,7 +2,7 @@ import React from 'react';
 import logo from '../img/argentBankLogo.png';
 
 export default function Nav() {
-    return (
+return (
     <nav class="main-nav">
     <a class="main-nav-logo" href="./index.html">
       <img
@@ -18,5 +18,5 @@ export default function Nav() {
       </a>
     </div>
   </nav>
-  )
+)
 }
