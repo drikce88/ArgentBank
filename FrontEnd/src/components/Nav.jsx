@@ -2,24 +2,27 @@ import React from 'react';
 import logo from '../img/argentBankLogo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { NavLink } from 'react-router-dom';
 
 
 export default function Nav() {
 return (
-    <nav className="main-nav">
-    <a className="main-nav-logo" href="./index.html">
+  <nav className="main-nav">
+  <div className="main-nav-logo">
+    <NavLink to="/">
       <img
         className="main-nav-logo-image"
         src={logo} alt="Argent Bank Logo"
       />
-      <h1 className="sr-only">Argent Bank</h1>
-    </a>
-    <div>
-      <a className="main-nav-item" href="./sign-in.html">
+    </NavLink>
+    <h1 className="sr-only">Argent Bank</h1>
+  </div>
+  <div>
+    <NavLink to='/SignIn' className="main-nav-item">
       <FontAwesomeIcon icon={faUserCircle} />
-        Sign In
-      </a>
-    </div>
+      Sign In
+    </NavLink>
+  </div>
   </nav>
 )
 }
