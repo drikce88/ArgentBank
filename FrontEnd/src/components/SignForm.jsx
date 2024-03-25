@@ -1,6 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import { NavLink } from 'react-router-dom';
 
 export default function SignForm() {
     return(
@@ -21,7 +22,9 @@ export default function SignForm() {
                         <input type="checkbox" id="remember-me" />
                         <label htmlFor="remember-me">Remember me</label>
                     </div>
-                    <button className="sign-in-button">Sign In</button> 
+                    <NavLink to="/User">
+                    <button className="sign-in-button">Sign In</button>
+                    </NavLink> 
                 </form>
             </section>
         </main>
