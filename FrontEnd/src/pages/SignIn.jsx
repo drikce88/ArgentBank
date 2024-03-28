@@ -6,13 +6,13 @@ import Footer from '../components/Footer.jsx';
 const SignIn = () => {
  
     return (
-        <>
+        
         <body>
         <Nav />
         <SignForm />
         <Footer />
         </body>
-        </>
+        
     );
 }
 

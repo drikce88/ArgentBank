@@ -7,11 +7,11 @@ const User = () => {
     
     return (
        <body>
-        <>
+      
         <Nav />
         <Transaction />
         <Footer />
-        </>
+        
        </body>
     );
 }

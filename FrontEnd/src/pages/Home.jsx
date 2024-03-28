@@ -5,14 +5,14 @@ import Footer from "../components/Footer.jsx";
 
 const Home = () => {
     return(
-        <>
+      
         <body>
         <Nav />
         <Banner />
         <Features />
         <Footer />
         </body>
-        </>
+      
     )
 }
 
