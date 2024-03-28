@@ -7,11 +7,11 @@ const SignIn = () => {
  
     return (
         
-        <body>
+        <div>
         <Nav />
         <SignForm />
         <Footer />
-        </body>
+        </div>
         
     );
 }
