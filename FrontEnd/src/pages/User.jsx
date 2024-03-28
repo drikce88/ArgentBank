@@ -6,13 +6,12 @@ import Footer from '../components/Footer.jsx';
 const User = () => {
     
     return (
-       <body>
+       <div>
       
         <Nav />
         <Transaction />
         <Footer />
-        
-       </body>
+       </div>
     );
 }
 

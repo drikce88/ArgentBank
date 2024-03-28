@@ -5,7 +5,7 @@ export const login = (userData) => {
     return async (dispatch) => {
         try {
             //envoie de la requéte post au backend pour vérifier les informations de connexion
-            const response = await axios.post('/api/v1/user/login', userData);
+            const response = await axios.post('http://localhost:3001/api/v1/user/login', userData);
 
             //mettre à jour l'état de l'authentification une fois l'utilisateur connecté
             dispatch({

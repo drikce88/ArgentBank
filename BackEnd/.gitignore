@@ -1,3 +1,5 @@
+.env
+
 # IDE files
 .idea
 
@@ -34,3 +36,4 @@ node_modules
 config/runtime.yaml
 
 .DS_Store
+

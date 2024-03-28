@@ -6,14 +6,13 @@ import Footer from "../components/Footer.jsx";
 const Home = () => {
     return(
       
-        <body>
+        <div>
         <Nav />
         <Banner />
         <Features />
         <Footer />
-        </body>
-      
-    )
+        </div>
+    );
 }
 
 export default Home;

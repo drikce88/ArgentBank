@@ -6,7 +6,7 @@ import { login } from '../actions/authActions';
 import { useNavigate } from 'react-router-dom';
 
 export default function SignForm() {
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const dispatch = useDispatch();
@@ -15,7 +15,7 @@ export default function SignForm() {
     const handleSignIn = async (e) => {
         e.preventDefault();
         try {
-            const { success } = await dispatch(login({ email: username, password }));
+            const { success } = await dispatch(login({ email, password }));
             // Si la connexion réussit, rediriger vers la page User
             if (success) {
                 navigate('/User');
@@ -38,7 +38,7 @@ export default function SignForm() {
                 <form onSubmit={handleSignIn}>
                     <div className="input-wrapper">
                         <label htmlFor="username">Username</label>
-                        <input type="text" id="username" value={username} onChange={(e) => setUsername(e.target.value)} autoComplete="username" />
+                        <input type="text" id="username" value={email} onChange={(e) => setEmail(e.target.value)} autoComplete="username" />
                     </div>
                     <div className="input-wrapper">
                         <label htmlFor="password">Password</label>
