@@ -1,14 +1,67 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getUserProfile } from '../actions/userProfileActions';
+import { updateUserProfile } from '../actions/userProfileActions';
 
 
 
 export default function Transaction() {
+  const userProfile = useSelector(state => state.userProfile);
+  const dispatch = useDispatch();
+  const [editMode, setEditMode] = useState(false);
+  const [newUserName, setNewUserName] = useState('');
+
+  useEffect(() => {
+    dispatch(getUserProfile());
+  }, [dispatch]);
+
+  const handleEdit = () => {
+    setEditMode(true);
+    setNewUserName(userProfile.userName);
+  };
+
+  const handleSubmit = () => {
+    dispatch(updateUserProfile({ userName: newUserName }));
+    setEditMode(false);
+  };
+
+  const handleCancel = () => {
+    setEditMode(false);
+  };
+
     return(
         <main className="main bg-dark">
         <div className="header">
-          <h1>Welcome back<br />Tony Jarvis!</h1>
-          <button className="edit-button">Edit Name</button>
+          <h1>
+          Welcome back
+          <br />
+          {editMode ? (
+            <input
+              type="text"
+              value={newUserName}
+              onChange={(e) => setNewUserName(e.target.value)}
+            />
+          ) : (
+            userProfile.userName
+          )}
+          !
+        </h1>
+        {!editMode && (
+          <button className="edit-button" onClick={handleEdit}>
+            Edit Name
+          </button>
+        )}
+        {editMode && (
+          <div>
+            <button className="edit-button" onClick={handleSubmit}>
+              Save
+            </button>
+            <button className="edit-button" onClick={handleCancel}>
+              Cancel
+            </button>
         </div>
+        )}
+      </div>
         <h2 className="sr-only">Accounts</h2>
         <section className="account">
           <div className="account-content-wrapper">
