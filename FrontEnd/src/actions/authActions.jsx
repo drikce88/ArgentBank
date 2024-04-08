@@ -28,3 +28,9 @@ export const login = (userData) => {
         }
     };
 };
+
+export const logout = () => {
+    return {
+      type: 'LOGOUT',
+    };
+  };

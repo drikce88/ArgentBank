@@ -21,6 +21,14 @@ const authReducer = (state = initialState, action) => {
                 token: null,
                 error: action.payload
             };
+        case 'LOGOUT':
+            localStorage.removeItem('token'); // Supprimer le token d'authentification du localStorage lors de la déconnexion
+            return {
+                ...state,
+                isAuthenticated: false,
+                token: null,
+                error: null
+            };
         default:
             return state;
     }
