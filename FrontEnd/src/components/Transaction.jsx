@@ -36,7 +36,7 @@ export default function Transaction() {
           Welcome back
           <br />
           {editMode ? (
-            <input
+            <input className ="edit-input"
               type="text"
               value={newUserName}
               onChange={(e) => setNewUserName(e.target.value)}

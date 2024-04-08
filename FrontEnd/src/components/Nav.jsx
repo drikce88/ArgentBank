@@ -31,7 +31,7 @@ return (
   </div>
   <div>
   {isAuthenticated ? (
-          <button onClick={handleLogout} className="main-nav-item">
+          <button onClick={handleLogout} className="main-nav-item button-logout">
             <FontAwesomeIcon icon={faUserCircle} />
             Logout
           </button>
