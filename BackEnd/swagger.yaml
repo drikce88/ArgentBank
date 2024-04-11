@@ -161,18 +161,34 @@ definitions:
 
 /transactions:
     get:
-      summary: Récupérer toutes les transactions du mois en cours, groupées par compte
-      description: Retourne toutes les transactions des utilisateurs pour le mois en cours, groupées par compte.
+      summary: Récupérer toutes les transactions
+      description: Récupère toutes les transactions disponibles.
       responses:
         '200':
           description: Transactions récupérées avec succès
         '404':
-          description: Aucune transaction trouvée pour le mois en cours
+          description: Aucune transaction trouvée
+
+    post:
+      summary: Créer une nouvelle transaction
+      description: Crée une nouvelle transaction.
+      requestBody:
+        description: Informations de la nouvelle transaction
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/definitions/Transaction'
+      responses:
+        '201':
+          description: Transaction créée avec succès
+        '400':
+          description: Données de transaction non valides
 
 /transactions/{transactionId}:
     get:
-      summary: Récupérer les détails d'une transaction
-      description: Retourne les détails d'une transaction spécifique.
+      summary: Récupérer une transaction
+      description: Récupère les détails d'une transaction spécifique.
       parameters:
         - name: transactionId
           in: path
@@ -185,8 +201,8 @@ definitions:
         '404':
           description: Transaction non trouvée
 
-put:
-      summary: Mettre à jour les informations d'une transaction
+     put:
+      summary: Mettre à jour une transaction
       description: Met à jour les informations d'une transaction spécifique.
       parameters:
         - name: transactionId
@@ -207,7 +223,7 @@ put:
         '404':
           description: Transaction non trouvée
 
-delete:
+    delete:
       summary: Supprimer une transaction
       description: Supprime une transaction spécifique.
       parameters:
@@ -223,7 +239,7 @@ delete:
           description: Transaction non trouvée
 
 definitions:
-  TransactionUpdate:
+  Transaction:
     type: object
     properties:
       amount:
@@ -232,3 +248,12 @@ definitions:
       description:
         type: string
         description: Description de la transaction
+  TransactionUpdate:
+    type: object
+    properties:
+      amount:
+        type: number
+        description: Nouveau montant de la transaction
+      description:
+        type: string
+        description: Nouvelle description de la transaction
