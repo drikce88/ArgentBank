@@ -156,3 +156,79 @@ definitions:
     properties:
       userName:
         type: string
+
+
+
+/transactions:
+    get:
+      summary: Récupérer toutes les transactions du mois en cours, groupées par compte
+      description: Retourne toutes les transactions des utilisateurs pour le mois en cours, groupées par compte.
+      responses:
+        '200':
+          description: Transactions récupérées avec succès
+        '404':
+          description: Aucune transaction trouvée pour le mois en cours
+
+/transactions/{transactionId}:
+    get:
+      summary: Récupérer les détails d'une transaction
+      description: Retourne les détails d'une transaction spécifique.
+      parameters:
+        - name: transactionId
+          in: path
+          description: Identifiant de la transaction à récupérer
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Détails de la transaction récupérés avec succès
+        '404':
+          description: Transaction non trouvée
+
+put:
+      summary: Mettre à jour les informations d'une transaction
+      description: Met à jour les informations d'une transaction spécifique.
+      parameters:
+        - name: transactionId
+          in: path
+          description: Identifiant de la transaction à mettre à jour
+          required: true
+          type: string
+      requestBody:
+        description: Nouvelles informations de la transaction
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/definitions/TransactionUpdate'
+      responses:
+        '200':
+          description: Transaction mise à jour avec succès
+        '404':
+          description: Transaction non trouvée
+
+delete:
+      summary: Supprimer une transaction
+      description: Supprime une transaction spécifique.
+      parameters:
+        - name: transactionId
+          in: path
+          description: Identifiant de la transaction à supprimer
+          required: true
+          type: string
+      responses:
+        '204':
+          description: Transaction supprimée avec succès
+        '404':
+          description: Transaction non trouvée
+
+definitions:
+  TransactionUpdate:
+    type: object
+    properties:
+      amount:
+        type: number
+        description: Montant de la transaction
+      description:
+        type: string
+        description: Description de la transaction
