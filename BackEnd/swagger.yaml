@@ -33,6 +33,7 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
+
   /user/signup:
     post:
       tags:
@@ -57,6 +58,7 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
+
   /user/profile:
     post:
       security:
@@ -65,17 +67,16 @@ paths:
         - User Module
       summary: User Profile API
       description: API for fetching a user profile
-      #produces:
-       # - application/json
       responses:
         '200':
-          description: User profile retrieved successully
+          description: User profile retrieved successfully
           schema:
             $ref: '#/definitions/ApiResponse'
         '400':
           description: Invalid Fields
         '500':
           description: Internal Server Error
+
     put:
       security:
         - Bearer: []
@@ -94,13 +95,124 @@ paths:
         - application/json
       responses:
         '200':
-          description: User profile retrieved successully
+          description: User profile updated successfully
           schema:
             $ref: '#/definitions/ApiResponse'
         '400':
           description: Invalid Fields
         '500':
           description: Internal Server Error
+
+  /transactions:
+    get:
+      summary: "Get all transactions for the current month grouped by account"
+      description: "Retrieves all transactions for the current month grouped by user accounts."
+      security:
+        - Bearer: []
+      responses:
+        '200':
+          description: "Successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Transaction"
+        '404':
+          description: "Transactions not found"
+        '500':
+          description: "Internal server error"
+
+    post:
+      summary: "Create a new transaction"
+      description: "Adds a new transaction for the user."
+      security:
+        - Bearer: []
+      parameters:
+        - name: "transactionData"
+          in: "body"
+          description: "Transaction data to be added"
+          required: true
+          schema:
+            $ref: "#/definitions/Transaction"
+      responses:
+        '201':
+          description: "Transaction created successfully"
+          schema:
+            $ref: "#/definitions/Transaction"
+        '400':
+          description: "Bad request"
+        '500':
+          description: "Internal server error"
+
+  /transactions/{id}:
+    get:
+      summary: "Get details of a specific transaction"
+      description: "Retrieves details of a specific transaction."
+      security:
+        - Bearer: []
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "ID of the transaction to retrieve"
+          required: true
+          type: "string"
+      responses:
+        '200':
+          description: "Successful operation"
+          schema:
+            $ref: "#/definitions/Transaction"
+        '404':
+          description: "Transaction not found"
+        '500':
+          description: "Internal server error"
+
+    put:
+      summary: "Update details of a specific transaction"
+      description: "Updates details of a specific transaction."
+      security:
+        - Bearer: []
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "ID of the transaction to update"
+          required: true
+          type: "string"
+        - name: "transactionData"
+          in: "body"
+          description: "Updated transaction data"
+          required: true
+          schema:
+            $ref: "#/definitions/Transaction"
+      responses:
+        '200':
+          description: "Transaction updated successfully"
+          schema:
+            $ref: "#/definitions/Transaction"
+        '400':
+          description: "Bad request"
+        '404':
+          description: "Transaction not found"
+        '500':
+          description: "Internal server error"
+
+    delete:
+      summary: "Delete a specific transaction"
+      description: "Deletes a specific transaction."
+      security:
+        - Bearer: []
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "ID of the transaction to delete"
+          required: true
+          type: "string"
+      responses:
+        '204':
+          description: "Transaction deleted successfully"
+        '404':
+          description: "Transaction not found"
+        '500':
+          description: "Internal server error"
+
 securityDefinitions:
   Bearer:
     type: apiKey
@@ -156,56 +268,20 @@ definitions:
     properties:
       userName:
         type: string
-
-
-        /transactions:
-  get:
-    summary: Récupérer toutes les transactions
-    description: Récupère toutes les transactions disponibles.
-    responses:
-      '200':
-        description: Transactions récupérées avec succès
-      '404':
-        description: Aucune transaction trouvée
-  post:
-    summary: Créer une nouvelle transaction
-    description: Crée une nouvelle transaction.
-    requestBody:
-      description: Informations de la nouvelle transaction
-      required: true
-      content:
-        application/json:
-          schema:
-            $ref: '#/definitions/Transaction'
-    responses:
-      '201':
-        description: Transaction créée avec succès
-      '400':
-        description: Données de transaction non valides
-
-/transactions/{transactionId}:
-  get:
-    summary: Récupérer une transaction
-    description: Récupère les détails d'une transaction spécifique.
-    parameters:
-      - name: transactionId
-        in: path
-        description: Identifiant de la transaction à récupérer
-        required: true
-        type: string
-    responses:
-      '200':
-        description: Détails de la transaction récupérés avec succès
-      '404':
-        description: Transaction non trouvée
-  put:
-    summary: Mettre à jour une transaction
-    description: Met à jour les informations d'une transaction spécifique.
-    parameters:
-      - name: transactionId
-        in: path
-        description: Identifiant de la transaction à mettre à jour
-        required: true
-        type: string
-    requestBody:
-      description: Nouvelles informations de
+  Transaction:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      account_id:
+        type: "string"
+      amount:
+        type: "number"
+      date:
+        type: "string"
+      description:
+        type: "string"
+    required:
+      - account_id
+      - amount
+      - date
