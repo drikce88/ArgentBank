@@ -10,6 +10,7 @@ import { logout } from '../actions/authActions';
 
 export default function Nav() {
   const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+  const userName = useSelector(state => state.userProfile.userName);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -31,10 +32,13 @@ return (
   </div>
   <div>
   {isAuthenticated ? (
+    <>
+    <span className='name-nav-item'>{userName}</span>
           <button onClick={handleLogout} className="main-nav-item button-logout">
             <FontAwesomeIcon icon={faUserCircle} />
             Logout
           </button>
+          </>
         ) : (
     <NavLink to='/SignIn' className="main-nav-item">
       <FontAwesomeIcon icon={faUserCircle} />

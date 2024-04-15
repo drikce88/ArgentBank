@@ -94,6 +94,13 @@ body {
   width: 200px;
 }
 
+.name-nav-item {
+  font-weight: bold;
+  font-size: larger;
+  padding-right: 30px;
+  color: #00bc77;
+}
+
 .hero {
   background-image: url('../src/img/bank-tree.jpeg');
   background-position: 0 -50px;
@@ -312,4 +319,18 @@ body {
   .transaction-button {
     width: 200px;
   }
+  
+}
+
+@media screen and (max-width: 493px) {
+
+  .name-nav-item {
+    font-size: small;
+    padding-right: 5px;
+  }
+
+  .button-logout {
+    font-size: small;
+  }
+  
 }

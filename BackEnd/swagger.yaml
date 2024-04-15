@@ -158,102 +158,54 @@ definitions:
         type: string
 
 
-
-/transactions:
-    get:
-      summary: Récupérer toutes les transactions
-      description: Récupère toutes les transactions disponibles.
-      responses:
-        '200':
-          description: Transactions récupérées avec succès
-        '404':
-          description: Aucune transaction trouvée
-
-    post:
-      summary: Créer une nouvelle transaction
-      description: Crée une nouvelle transaction.
-      requestBody:
-        description: Informations de la nouvelle transaction
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/definitions/Transaction'
-      responses:
-        '201':
-          description: Transaction créée avec succès
-        '400':
-          description: Données de transaction non valides
+        /transactions:
+  get:
+    summary: Récupérer toutes les transactions
+    description: Récupère toutes les transactions disponibles.
+    responses:
+      '200':
+        description: Transactions récupérées avec succès
+      '404':
+        description: Aucune transaction trouvée
+  post:
+    summary: Créer une nouvelle transaction
+    description: Crée une nouvelle transaction.
+    requestBody:
+      description: Informations de la nouvelle transaction
+      required: true
+      content:
+        application/json:
+          schema:
+            $ref: '#/definitions/Transaction'
+    responses:
+      '201':
+        description: Transaction créée avec succès
+      '400':
+        description: Données de transaction non valides
 
 /transactions/{transactionId}:
-    get:
-      summary: Récupérer une transaction
-      description: Récupère les détails d'une transaction spécifique.
-      parameters:
-        - name: transactionId
-          in: path
-          description: Identifiant de la transaction à récupérer
-          required: true
-          type: string
-      responses:
-        '200':
-          description: Détails de la transaction récupérés avec succès
-        '404':
-          description: Transaction non trouvée
-
-     put:
-      summary: Mettre à jour une transaction
-      description: Met à jour les informations d'une transaction spécifique.
-      parameters:
-        - name: transactionId
-          in: path
-          description: Identifiant de la transaction à mettre à jour
-          required: true
-          type: string
-      requestBody:
-        description: Nouvelles informations de la transaction
+  get:
+    summary: Récupérer une transaction
+    description: Récupère les détails d'une transaction spécifique.
+    parameters:
+      - name: transactionId
+        in: path
+        description: Identifiant de la transaction à récupérer
         required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/definitions/TransactionUpdate'
-      responses:
-        '200':
-          description: Transaction mise à jour avec succès
-        '404':
-          description: Transaction non trouvée
-
-    delete:
-      summary: Supprimer une transaction
-      description: Supprime une transaction spécifique.
-      parameters:
-        - name: transactionId
-          in: path
-          description: Identifiant de la transaction à supprimer
-          required: true
-          type: string
-      responses:
-        '204':
-          description: Transaction supprimée avec succès
-        '404':
-          description: Transaction non trouvée
-
-definitions:
-  Transaction:
-    type: object
-    properties:
-      amount:
-        type: number
-        description: Montant de la transaction
-      description:
         type: string
-        description: Description de la transaction
-  TransactionUpdate:
-    type: object
-    properties:
-      amount:
-        type: number
-        description: Nouveau montant de la transaction
-      description:
+    responses:
+      '200':
+        description: Détails de la transaction récupérés avec succès
+      '404':
+        description: Transaction non trouvée
+  put:
+    summary: Mettre à jour une transaction
+    description: Met à jour les informations d'une transaction spécifique.
+    parameters:
+      - name: transactionId
+        in: path
+        description: Identifiant de la transaction à mettre à jour
+        required: true
         type: string
-        description: Nouvelle description de la transaction
+    requestBody:
+      description: Nouvelles informations de
