@@ -29,11 +29,11 @@ export const getUserProfile = () => {
 };
 
 export const updateUserProfile = (userData) => {
-  return async (dispatch, getState) => {
-    const { auth } = getState();
+  return async (dispatch) => {
+    const token = localStorage.getItem("token");
     const config = {
       headers: {
-        Authorization: `Bearer ${auth.token}`, // Ajoutez le token d'authentification dans l'en-tête
+        Authorization: `Bearer ${token}`, // Ajoutez le token d'authentification dans l'en-tête
       },
     };
 

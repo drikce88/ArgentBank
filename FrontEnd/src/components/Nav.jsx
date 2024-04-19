@@ -9,10 +9,11 @@ import { logout } from '../actions/authActions';
 
 
 export default function Nav() {
-  const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+  const isSignIn = localStorage.getItem("token");
   const userName = useSelector(state => state.userProfile.userName);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
 
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -31,7 +32,7 @@ return (
     <h1 className="sr-only">Argent Bank</h1>
   </div>
   <div>
-  {isAuthenticated ? (
+  {isSignIn ? (
     <>
     <span className='name-nav-item'>{userName}</span>
           <button onClick={handleLogout} className="main-nav-item button-logout">
