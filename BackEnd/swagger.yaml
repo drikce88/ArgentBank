@@ -105,6 +105,8 @@ paths:
 
   /transactions:
     get:
+      tags:
+        - Transactions
       summary: "Get all transactions for the current month grouped by account"
       description: "Retrieves all transactions for the current month grouped by user accounts."
       security:
@@ -122,6 +124,8 @@ paths:
           description: "Internal server error"
 
     post:
+      tags:
+        - Transactions
       summary: "Create a new transaction"
       description: "Adds a new transaction for the user."
       security:
@@ -145,6 +149,8 @@ paths:
 
   /transactions/{id}:
     get:
+      tags:
+        - Transactions
       summary: "Get details of a specific transaction"
       description: "Retrieves details of a specific transaction."
       security:
@@ -166,6 +172,8 @@ paths:
           description: "Internal server error"
 
     put:
+      tags:
+        - Transactions
       summary: "Update details of a specific transaction"
       description: "Updates details of a specific transaction."
       security:
@@ -195,6 +203,8 @@ paths:
           description: "Internal server error"
 
     delete:
+      tags:
+        - Transactions
       summary: "Delete a specific transaction"
       description: "Deletes a specific transaction."
       security:
